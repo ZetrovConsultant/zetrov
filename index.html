@@ -1,215 +1,545 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zetrov Limited - Business Consulting</title>
+    <title>Hong Kong Company Incorporation & Banking Advisory | Zetrov Limited</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8fafc;
         }
-        /* Updated gradient background for hero section */
-        .gradient-bg {
-            background: linear-gradient(to right, #ADD8E6, #87CEEB); /* Light Blue to Sky Blue */
+        .gradient-hero {
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
         }
         .btn-primary {
-            background-color: #6366f1; /* Indigo */
-            transition: background-color 0.3s ease;
+            background-color: #0284c7;
+            transition: all 0.25s ease;
         }
         .btn-primary:hover {
-            background-color: #4f46e5; /* Darker Indigo */
+            background-color: #0369a1;
+            transform: translateY(-1px);
         }
-        .shadow-custom {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.1), 0 8px 10px -6px rgba(2, 132, 199, 0.05);
+        }
+        /* Custom scrollbar for chatbot */
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-slate-800 bg-slate-50 antialiased selection:bg-sky-500 selection:text-white">
 
-    <!-- Header Section -->
-    <header class="bg-white shadow-md py-4">
-        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
-            <!-- Logo and Company Name -->
-            <div class="flex items-center">
-                <!-- Zetrov Limited Logo (Z in a light blue circle) -->
-                <svg class="h-8 w-8 mr-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="#87CEEB"/> <!-- Light blue circle -->
-                    <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">Z</text>
-                </svg>
-                <a href="#" class="text-2xl font-bold text-gray-900">Zetrov Limited</a>
-            </div>
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition duration-200">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20">
+            <!-- Brand Logo & Name -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600 shadow-md shadow-sky-500/20 group-hover:scale-105 transition transform">
+                    <!-- Stylized Z Monogram -->
+                    <svg class="w-6 h-6 text-white drop-shadow-sm" viewBox="0 0 100 100" fill="currentColor">
+                        <path d="M26 28h48c1.5 0 2.8 1.2 2.8 2.8 0 .8-.4 1.6-1 2.1L40 70h25c8 0 14 3.5 17 9-5 2.5-12 3.5-19 3.5H28c-1.5 0-2.8-1.2-2.8-2.8 0-.8.4-1.6 1-2.1L62 36H26c-1.5 0-2.8-1.2-2.8-2.8s1.3-3.2 2.8-3.2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 group-hover:text-sky-600 transition">Zetrov Limited</span>
+                    <span class="hidden sm:block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Hong Kong Corporate Advisory</span>
+                </div>
+            </a>
 
-            <!-- Navigation Links (Hidden on small screens, shown on medium and larger) -->
-            <nav class="hidden md:flex space-x-6">
-                <a href="#services" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Services</a>
-                <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">About Us</a>
-                <a href="#contact" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Contact</a>
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <a href="#home" class="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">Home</a>
+                <a href="#services" class="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">Services</a>
+                <a href="#about" class="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">About Us</a>
+                <a href="#contact" class="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">Contact</a>
+                <a href="#contact" class="ml-3 inline-flex items-center px-4 py-2 text-sm font-bold text-white bg-sky-600 hover:bg-sky-700 rounded-full shadow-sm hover:shadow transition">
+                    Get Started
+                </a>
             </nav>
 
-            <!-- Mobile Menu Button (Hamburger Icon) -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 hover:text-indigo-600 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Mobile Menu Hamburger Button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" type="button" aria-label="Toggle Navigation" class="p-2 text-slate-600 hover:text-sky-600 hover:bg-slate-100 rounded-lg focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default, shown when button is clicked) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 shadow-inner">
-            <a href="#services" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">Services</a>
-            <a href="#about" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">About Us</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">Contact</a>
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">Home</a>
+            <a href="#services" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">Services</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">About Us</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">Contact</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="gradient-bg text-white py-20 sm:py-24 lg:py-32">
-        <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+    <section id="home" class="relative overflow-hidden gradient-hero text-white py-20 sm:py-28 lg:py-32">
+        <!-- Background Light Rings -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-white/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-sky-300/20 blur-3xl pointer-events-none"></div>
+
+        <div class="relative max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm mb-6 border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span> Incorporated in Hong Kong Since 2022
+            </span>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight sm:leading-tight lg:leading-tight mb-6">
                 Expert Business Consulting for Your Success
             </h1>
-            <p class="text-lg sm:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto">
+            <p class="text-base sm:text-xl lg:text-2xl text-sky-50 font-normal max-w-3xl mx-auto mb-10 leading-relaxed">
                 Zetrov Limited provides tailored advice for personal and SME banking, seamless account opening, and efficient Hong Kong company incorporation.
             </p>
-            <a href="#services" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
-                Explore Our Services
-            </a>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#services" class="w-full sm:w-auto inline-flex items-center justify-center bg-white text-sky-700 font-bold py-3.5 px-8 rounded-full shadow-lg hover:bg-sky-50 transition transform hover:-translate-y-0.5">
+                    Explore Our Services
+                </a>
+                <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center bg-sky-700/60 hover:bg-sky-700 border border-white/30 text-white font-bold py-3.5 px-8 rounded-full transition backdrop-blur-sm">
+                    Speak With an Advisor
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 sm:py-20 lg:py-24 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">Our Services</h2>
+    <section id="services" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase">Tailored Solutions</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Our Core Services</h2>
+                <p class="text-base sm:text-lg text-slate-600 mt-4">
+                    Reliable, compliant, and transparent corporate advisory services customized for global entrepreneurs and local SMEs.
+                </p>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service Card 1: Banking Advice -->
-                <div class="bg-gray-50 rounded-lg p-8 shadow-custom hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-                    <div class="flex justify-center mb-6">
-                        <svg class="h-16 w-16 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
+                <!-- Service 1: Banking Advice -->
+                <div class="bg-slate-50 border border-slate-100 rounded-2xl p-8 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center mb-6">
+                            <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Personal & SME Banking Advice</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Navigate the nuances of banking in Hong Kong with our expert advisory. We assist individuals and emerging SMEs with customized compliance guidelines, document checklists, and strategic banking placement.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-900">Personal & SME Banking Advice</h3>
-                    <p class="text-gray-600 text-center">
-                        Navigate the complexities of banking in Hong Kong with our expert guidance. We provide tailored advice for both personal and small to medium-sized enterprise banking needs.
-                    </p>
+                    <div class="mt-6 pt-6 border-t border-slate-200/60">
+                        <span class="text-xs font-semibold text-sky-600 flex items-center gap-1">Tailored compliance review &rarr;</span>
+                    </div>
                 </div>
 
-                <!-- Service Card 2: Account Opening -->
-                <div class="bg-gray-50 rounded-lg p-8 shadow-custom hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-                    <div class="flex justify-center mb-6">
-                        <svg class="h-16 w-16 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
+                <!-- Service 2: Account Opening -->
+                <div class="bg-slate-50 border border-slate-100 rounded-2xl p-8 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center mb-6">
+                            <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Seamless Account Opening</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Simplify account setups across traditional top-tier banks and digital virtual banks in Hong Kong. We guide you step-by-step through verification, interview prep, and regulatory due diligence.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-900">Seamless Account Opening</h3>
-                    <p class="text-gray-600 text-center">
-                        Simplify the process of opening bank accounts in Hong Kong. We assist individuals and businesses through every step, ensuring a smooth and efficient experience.
-                    </p>
+                    <div class="mt-6 pt-6 border-t border-slate-200/60">
+                        <span class="text-xs font-semibold text-sky-600 flex items-center gap-1">Fast-track onboarding &rarr;</span>
+                    </div>
                 </div>
 
-                <!-- Service Card 3: Company Incorporation -->
-                <div class="bg-gray-50 rounded-lg p-8 shadow-custom hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-                    <div class="flex justify-center mb-6">
-                        <svg class="h-16 w-16 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m-1 4h1m8-10v12m0 0H9m8 0h2"></path>
-                        </svg>
+                <!-- Service 3: Company Incorporation -->
+                <div class="bg-slate-50 border border-slate-100 rounded-2xl p-8 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center mb-6">
+                            <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m-1 4h1m8-10v12m0 0H9m8 0h2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Hong Kong Company Incorporation</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Establish your entity in one of the world's premier financial centers. From Articles of Association and Companies Registry filings to statutory secretary services and business registration certificates.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-900">Hong Kong Company Incorporation</h3>
-                    <p class="text-gray-600 text-center">
-                        Establish your business presence in Hong Kong with ease. We handle all aspects of company incorporation, ensuring compliance and efficiency.
-                    </p>
+                    <div class="mt-6 pt-6 border-t border-slate-200/60">
+                        <span class="text-xs font-semibold text-sky-600 flex items-center gap-1">Complete statutory compliance &rarr;</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-16 sm:py-20 lg:py-24 bg-gray-100">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-gray-900">About Zetrov Limited</h2>
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Zetrov Limited was incorporated in Hong Kong in 2022 with a clear mission: to empower individuals and businesses with expert financial and corporate advisory services. We understand the unique landscape of Hong Kong's financial sector and are dedicated to providing clear, actionable, and comprehensive solutions.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed">
-                Our team of experienced consultants is committed to delivering personalized service, ensuring that each client receives the attention and expertise needed to achieve their goals, whether it's navigating banking regulations, streamlining account setups, or establishing a new company.
-            </p>
+    <!-- About Us Section (Properly Aligned with Clean Typography) -->
+    <section id="about" class="py-20 lg:py-28 bg-slate-100 border-y border-slate-200/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Centered Header -->
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase">Who We Are</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">About Zetrov Limited</h2>
+            </div>
+
+            <!-- Neatly Aligned Container Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-8 sm:p-12 space-y-6 text-left">
+                <p class="text-base sm:text-lg text-slate-700 leading-relaxed">
+                    Zetrov Limited was incorporated in Hong Kong in 2022 with a clear mission: to empower individuals and businesses with expert financial and corporate advisory services. We understand the unique landscape of Hong Kong's financial sector and are dedicated to providing clear, actionable, and comprehensive solutions.
+                </p>
+                <p class="text-base sm:text-lg text-slate-700 leading-relaxed">
+                    Our team of experienced consultants is committed to delivering personalized service, ensuring that each client receives the attention and expertise needed to achieve their goals, whether it's navigating banking regulations, streamlining account setups, or establishing a new company.
+                </p>
+
+                <!-- Value Highlights -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-100">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 text-sm font-bold">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Hong Kong Rooted</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Established locally in 2022.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 text-sm font-bold">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Regulatory Focus</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Compliant, reliable advisory.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 text-sm font-bold">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Direct Support</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Dedicated client assistance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 sm:py-20 lg:py-24 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">Get in Touch</h2>
-            <div class="max-w-2xl mx-auto bg-gray-50 rounded-lg p-8 shadow-custom">
-                <p class="text-lg text-gray-700 text-center mb-8">
+    <section id="contact" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase">Reach Out</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Get in Touch</h2>
+                <p class="text-base text-slate-600 mt-3">
                     Have questions or need assistance? Reach out to us. We're here to help.
                 </p>
-                <form class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John Doe">
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 sm:p-12 shadow-sm">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">Your Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm outline-none transition" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">Your Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm outline-none transition" placeholder="you@example.com">
+                        </div>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
+                        <label for="service" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">Service of Interest</label>
+                        <select id="service" name="service" class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm outline-none transition">
+                            <option value="bank-advice">Personal & SME Banking Advice</option>
+                            <option value="bank-opening">Bank Account Opening Support</option>
+                            <option value="incorporation">Hong Kong Company Incorporation</option>
+                            <option value="general">General Consultation</option>
+                        </select>
                     </div>
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
-                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Tell us about your needs..."></textarea>
+                        <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">Your Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm outline-none transition" placeholder="Tell us about your requirements..."></textarea>
                     </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn-primary text-white font-bold py-3 px-8 rounded-md shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+
+                    <div id="formFeedback" class="hidden p-3 rounded-xl text-center text-sm font-semibold"></div>
+
+                    <div class="text-center pt-2">
+                        <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center btn-primary text-white font-bold py-3.5 px-10 rounded-xl shadow-md hover:shadow-lg transition">
                             Send Message
                         </button>
                     </div>
                 </form>
-                <div class="mt-8 text-center text-gray-600">
-                    <p><strong>Email:</strong> <a href="mailto:zetrovconsultant@gmail.com" class="text-indigo-600 hover:underline">zetrovconsultant@gmail.com</a></p>
-                    <p><strong>Phone:</strong> +852 5208 6668</p>
-                    <p><strong>Address:</strong> 2503 Tamson Plaza 161 Wai Yip St, Kwun Tong Hong Kong</p>
+
+                <!-- Direct Contact Details (Physical Address Removed) -->
+                <div class="mt-12 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-around gap-6 text-center sm:text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-medium text-slate-500">Email Us</span>
+                            <a href="mailto:zetrovconsultant@gmail.com" class="text-sm sm:text-base font-bold text-sky-700 hover:underline">zetrovconsultant@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-medium text-slate-500">Call / WhatsApp</span>
+                            <a href="tel:+85252086668" class="text-sm sm:text-base font-bold text-slate-800 hover:text-sky-600 transition">+852 5208 6668</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <p>&copy; 2022 - <span id="current-year"></span> Zetrov Limited. All rights reserved.</p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
-                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex items-center justify-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-xs">
+                    Z
+                </div>
+                <span class="text-lg font-bold text-white">Zetrov Limited</span>
             </div>
+            <p class="text-xs sm:text-sm text-slate-500">
+                Hong Kong Corporate Services & Banking Advisory &bull; Incorporated in Hong Kong 2022
+            </p>
+            <p class="text-xs text-slate-500 pt-2">
+                &copy; 2022 - <span id="current-year"></span> Zetrov Limited. All rights reserved.
+            </p>
         </div>
     </footer>
 
+    <!-- Floating Chatbot Widget Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Notification bubble -->
+        <span id="chat-badge" class="absolute -top-1 -right-1 flex h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-sky-500 text-[9px] font-bold text-white items-center justify-center">1</span>
+        </span>
+
+        <button id="chatbot-toggle" type="button" aria-label="Open Zetrov Advisor Chat" class="w-14 h-14 rounded-full bg-gradient-to-tr from-sky-600 to-sky-400 text-white flex items-center justify-center shadow-xl hover:shadow-sky-500/30 hover:scale-105 active:scale-95 transition transform focus:outline-none">
+            <svg id="chat-open-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+            <svg id="chat-close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Floating Chatbot Modal Window -->
+    <div id="chatbot-modal" class="fixed bottom-24 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-96 max-w-[400px] h-[520px] bg-white rounded-2xl shadow-2xl border border-slate-200 z-50 flex flex-col hidden overflow-hidden transition-all duration-300">
+        <!-- Chat Header -->
+        <div class="bg-gradient-to-r from-sky-600 to-sky-500 p-4 text-white flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center font-bold text-sm">
+                    Z
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm leading-tight">Zetrov Advisor Assistant</h3>
+                    <p class="text-[11px] text-sky-100 flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Online &bull; Instant Help
+                    </p>
+                </div>
+            </div>
+            <button id="chatbot-close-modal" type="button" class="text-white/80 hover:text-white p-1 rounded-lg focus:outline-none">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto chat-scroll space-y-3 bg-slate-50 text-xs sm:text-sm">
+            <!-- Bot Welcome Message -->
+            <div class="flex items-start gap-2">
+                <div class="w-7 h-7 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Z</div>
+                <div class="bg-white border border-slate-200/80 rounded-2xl rounded-tl-sm p-3 text-slate-700 shadow-sm leading-relaxed max-w-[85%]">
+                    Hello! Welcome to <strong>Zetrov Limited</strong>. How can I assist you with Hong Kong company incorporation or banking advisory today?
+                </div>
+            </div>
+
+            <!-- Suggestion Chips -->
+            <div id="suggestion-chips" class="flex flex-wrap gap-1.5 pt-1 pl-9">
+                <button type="button" class="chip-btn px-2.5 py-1 rounded-full bg-sky-100 hover:bg-sky-200 text-sky-700 text-[11px] font-semibold transition" data-query="How do I incorporate a Hong Kong company?">HK Incorporation</button>
+                <button type="button" class="chip-btn px-2.5 py-1 rounded-full bg-sky-100 hover:bg-sky-200 text-sky-700 text-[11px] font-semibold transition" data-query="Can you help with SME bank account opening?">SME Banking</button>
+                <button type="button" class="chip-btn px-2.5 py-1 rounded-full bg-sky-100 hover:bg-sky-200 text-sky-700 text-[11px] font-semibold transition" data-query="What is your contact phone number?">Contact Details</button>
+            </div>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form id="chat-form" class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+            <input type="text" id="chat-input" placeholder="Ask about HK banking, incorporation..." class="flex-1 px-3.5 py-2.5 bg-slate-100 border border-transparent rounded-xl text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-sky-500 transition">
+            <button type="submit" class="p-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl shadow-sm transition shrink-0 focus:outline-none">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </button>
+        </form>
+    </div>
+
     <script>
-        // Get the current year for the footer
+        // Set dynamic current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Mobile menu toggle functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
-    </script>
 
+        // Chatbot modal toggling
+        const chatToggle = document.getElementById('chatbot-toggle');
+        const chatModal = document.getElementById('chatbot-modal');
+        const chatCloseModal = document.getElementById('chatbot-close-modal');
+        const chatOpenIcon = document.getElementById('chat-open-icon');
+        const chatCloseIcon = document.getElementById('chat-close-icon');
+        const chatBadge = document.getElementById('chat-badge');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+
+        function toggleChat() {
+            const isHidden = chatModal.classList.contains('hidden');
+            if (isHidden) {
+                chatModal.classList.remove('hidden');
+                chatOpenIcon.classList.add('hidden');
+                chatCloseIcon.classList.remove('hidden');
+                if (chatBadge) chatBadge.classList.add('hidden');
+                chatInput.focus();
+            } else {
+                chatModal.classList.add('hidden');
+                chatOpenIcon.classList.remove('hidden');
+                chatCloseIcon.classList.add('hidden');
+            }
+        }
+
+        chatToggle.addEventListener('click', toggleChat);
+        chatCloseModal.addEventListener('click', toggleChat);
+
+        // Append message to chat interface
+        function appendChatMessage(sender, text) {
+            const row = document.createElement('div');
+            row.className = sender === 'user' ? 'flex justify-end' : 'flex items-start gap-2';
+
+            if (sender === 'user') {
+                row.innerHTML = `
+                    <div class="bg-sky-600 text-white rounded-2xl rounded-tr-sm p-3 shadow-sm leading-relaxed max-w-[85%]">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                row.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Z</div>
+                    <div class="bg-white border border-slate-200/80 rounded-2xl rounded-tl-sm p-3 text-slate-700 shadow-sm leading-relaxed max-w-[85%]">
+                        ${text}
+                    </div>
+                `;
+            }
+
+            chatMessages.appendChild(row);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Automated responses for Zetrov Limited inquiries
+        function generateBotResponse(query) {
+            const q = query.toLowerCase();
+            if (q.includes('incorporat') || q.includes('company') || q.includes('setup') || q.includes('register')) {
+                return "Zetrov Limited offers full Hong Kong company incorporation services, including Company Name search, Articles of Association, Articles filing with the Companies Registry, Business Registration Certificate (BRC), and local Company Secretary provision.";
+            } else if (q.includes('bank') || q.includes('account') || q.includes('sme')) {
+                return "We provide comprehensive personal and SME banking advice in Hong Kong. We assess your business model, prepare full application dossiers, and arrange appointments with suitable retail and virtual banks.";
+            } else if (q.includes('contact') || q.includes('phone') || q.includes('email') || q.includes('call') || q.includes('whatsapp')) {
+                return "You can reach us directly via:<br>&bull; <strong>Email:</strong> <a href='mailto:zetrovconsultant@gmail.com' class='text-sky-600 underline'>zetrovconsultant@gmail.com</a><br>&bull; <strong>Phone / WhatsApp:</strong> +852 5208 6668";
+            } else if (q.includes('fee') || q.includes('price') || q.includes('cost')) {
+                return "Our consulting and incorporation fees are tailored to your company structure and banking tier. Please leave your details in the contact form or email us at zetrovconsultant@gmail.com for a detailed proposal.";
+            } else if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+                return "Hello! How can Zetrov Limited assist your business today? Feel free to ask about our Hong Kong incorporation packages or banking advisory.";
+            } else {
+                return "Thank you for inquiring! For detailed inquiries regarding " + escapeHtml(query) + ", our consultants are happy to assist. Please email us at <strong>zetrovconsultant@gmail.com</strong> or WhatsApp <strong>+852 5208 6668</strong>.";
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Handle chat form submit
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            appendChatMessage('user', escapeHtml(text));
+            chatInput.value = '';
+
+            // Simulated quick response
+            setTimeout(() => {
+                const reply = generateBotResponse(text);
+                appendChatMessage('bot', reply);
+            }, 400);
+        });
+
+        // Quick chip clicks
+        document.querySelectorAll('.chip-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const query = btn.getAttribute('data-query');
+                appendChatMessage('user', query);
+                setTimeout(() => {
+                    const reply = generateBotResponse(query);
+                    appendChatMessage('bot', reply);
+                }, 350);
+            });
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('formFeedback');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+
+            formFeedback.className = "p-3 rounded-xl text-center text-sm font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 block";
+            formFeedback.innerHTML = `Thank you, ${escapeHtml(name)}! Your inquiry has been received. A Zetrov consultant will contact you shortly.`;
+
+            contactForm.reset();
+
+            setTimeout(() => {
+                formFeedback.classList.add('hidden');
+            }, 6000);
+        });
+    </script>
 </body>
 </html>
